@@ -279,7 +279,3 @@ Potential improvements include:
 
 ---
 
-## Author
-
-Matei Săpunaru
-Machine Learning Engineer
