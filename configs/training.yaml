@@ -1,0 +1,70 @@
+split:
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+
+features:
+  timestamp_column: "timestamp"
+  machine_id_column: "machine_id"
+  target_column: "is_anomaly"
+
+  base_feature_columns:
+    - temperature
+    - vibration
+    - pressure
+    - rpm
+    - power_draw
+    - throughput
+
+  lag_steps:
+    - 1
+    - 4
+    - 12
+
+  rolling_windows:
+    - 4
+    - 12
+    - 24
+
+baseline:
+  rolling_zscore:
+    feature_columns:
+      - temperature
+      - vibration
+      - pressure
+      - rpm
+      - power_draw
+      - throughput
+    window_size: 24
+    z_threshold: 3.0
+
+  isolation_forest:
+    n_estimators: 100
+    contamination_values:
+      - 0.03
+      - 0.05
+      - 0.08
+      - 0.10
+      - 0.13
+    random_state: 42
+    use_scaling: true
+
+mlflow:
+  tracking_uri: "mlruns"
+  experiment_name: "factorypulse_baselines"
+  run_name_prefix: "baseline"
+
+lstm_autoencoder:
+  sequence_length: 24
+  hidden_size: 64
+  latent_size: 32
+  num_layers: 1
+  dropout: 0.0
+  batch_size: 128
+  learning_rate: 0.001
+  num_epochs: 12
+  threshold_percentile: 95.0
+  random_state: 42
+  score_mode: "mse"
+  threshold_search_points: 120
+  max_fp_per_1000: 150.0

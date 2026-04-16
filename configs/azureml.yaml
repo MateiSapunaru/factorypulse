@@ -1,0 +1,19 @@
+subscription_config_path: "config.json"
+
+job:
+  experiment_name: "factorypulse_azure_lstm"
+  display_name: "factorypulse-lstm-autoencoder"
+  description: "Train FactoryPulse LSTM autoencoder on Azure ML"
+  compute_name: "AzureLSTM"
+
+environment:
+  name: "factorypulse-lstm-env"
+  version: "1"
+  base_image: "mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:latest"
+  conda_file: "configs/azureml-conda.yaml"
+
+inputs:
+  processed_data_dir: "data/processed"
+
+outputs:
+  output_dir_name: "azure_outputs"

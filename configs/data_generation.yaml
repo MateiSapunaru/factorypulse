@@ -1,0 +1,88 @@
+random_seed: 42
+
+dataset:
+  n_machines: 8
+  start_time: "2025-01-01 00:00:00"
+  periods: 24000
+  freq: "15min"
+
+signals:
+  temperature:
+    base_mean: 75.0
+    base_std: 4.0
+    trend_std: 0.002
+    daily_amplitude: 3.5
+    weekly_amplitude: 1.5
+    noise_std: 0.8
+
+  vibration:
+    base_mean: 12.0
+    base_std: 1.2
+    trend_std: 0.001
+    daily_amplitude: 1.0
+    weekly_amplitude: 0.5
+    noise_std: 0.4
+
+  pressure:
+    base_mean: 30.0
+    base_std: 2.0
+    trend_std: 0.0015
+    daily_amplitude: 1.8
+    weekly_amplitude: 0.8
+    noise_std: 0.5
+
+  rpm:
+    base_mean: 1500.0
+    base_std: 120.0
+    trend_std: 0.05
+    daily_amplitude: 80.0
+    weekly_amplitude: 40.0
+    noise_std: 25.0
+
+  power_draw:
+    base_mean: 220.0
+    base_std: 18.0
+    trend_std: 0.01
+    daily_amplitude: 15.0
+    weekly_amplitude: 7.0
+    noise_std: 6.0
+
+  throughput:
+    base_mean: 95.0
+    base_std: 8.0
+    trend_std: 0.008
+    daily_amplitude: 10.0
+    weekly_amplitude: 5.0
+    noise_std: 3.0
+
+anomalies:
+  anomaly_probability_per_machine: 0.003
+  min_anomaly_length: 8
+  max_anomaly_length: 96
+
+  spike:
+    enabled: true
+    magnitude_std_factor: 4.0
+
+  drift:
+    enabled: true
+    slope_std_factor: 0.15
+
+  stuck_sensor:
+    enabled: true
+
+  variance_increase:
+    enabled: true
+    noise_multiplier: 3.0
+
+  contextual:
+    enabled: true
+    magnitude_std_factor: 3.0
+
+  target_features:
+    - temperature
+    - vibration
+    - pressure
+    - rpm
+    - power_draw
+    - throughput

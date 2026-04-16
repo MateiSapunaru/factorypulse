@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: factorypulse_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: factorypulse
+      POSTGRES_USER: factorypulse_user
+      POSTGRES_PASSWORD: factorypulse_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
