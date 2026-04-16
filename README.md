@@ -128,7 +128,7 @@ All experiments are tracked using MLflow:
 
 ### Screenshot – MLflow Experiment Tracking
 
-*(Insert screenshot here)*
+*<img width="1903" height="879" alt="image" src="https://github.com/user-attachments/assets/45241f08-3203-4581-806a-ccac80f75e8b" />*
 
 ---
 
@@ -153,19 +153,19 @@ A Streamlit dashboard is included for interactive exploration:
 
 ### Screenshot – Dataset Overview
 
-*(Insert screenshot here)*
+*<img width="1498" height="846" alt="image" src="https://github.com/user-attachments/assets/1f9e8664-f7dc-4a30-9806-8cb369c159ea" />*
 
 ### Screenshot – Anomaly Visualization
 
-*(Insert screenshot here)*
+*<img width="1406" height="753" alt="image" src="https://github.com/user-attachments/assets/0e74e74f-a803-46b0-9a27-7ef854563f03" />*
 
 ### Screenshot – Model Comparison
 
-*(Insert screenshot here)*
+*<img width="1473" height="719" alt="image" src="https://github.com/user-attachments/assets/8b112dda-a0d0-41d8-ae30-7b682c069bde" />*
 
 ### Screenshot – Inference Demo
 
-*(Insert screenshot here)*
+*<img width="1486" height="828" alt="image" src="https://github.com/user-attachments/assets/8d5ca059-6567-4954-98db-222dc66eaa13" />*
 
 ---
 
