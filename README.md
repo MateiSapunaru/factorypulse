@@ -264,6 +264,12 @@ poetry run mypy src tests
 
 These also run automatically on every push via GitHub Actions (see the CI badge above).
 
+To run the same checks locally as a pre-commit hook:
+
+```bash
+poetry run pre-commit install
+```
+
 ---
 
 ## Limitations
