@@ -28,7 +28,9 @@ def main() -> None:
         path=f"azureml://jobs/{job_name}/outputs/output_dir/paths/models",
         type=AssetTypes.CUSTOM_MODEL,
         name="factorypulse-lstm-autoencoder",
-        description="FactoryPulse final LSTM autoencoder bundle with weights, scaler, and metadata.",
+        description=(
+            "FactoryPulse final LSTM autoencoder bundle with weights, scaler, and metadata."
+        ),
         tags={
             "project": "factorypulse",
             "stage": "final",

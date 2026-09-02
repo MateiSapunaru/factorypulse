@@ -43,14 +43,15 @@ def plot_feature(
 
     if save:
         import os
+
         os.makedirs("data/artifacts/plots", exist_ok=True)
 
         file_path = f"data/artifacts/plots/{machine_id}_{feature}.html"
         fig.write_html(file_path)
         print(f"Saved plot: {file_path}")
 
-    fig.show()    
-    
+    fig.show()
+
     subset = df[df["machine_id"] == machine_id].copy()
 
     fig = go.Figure()

@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 import torch
 from joblib import load
+from sklearn.preprocessing import StandardScaler
 from torch.utils.data import DataLoader
 
 from factorypulse.models.deep.dataset import SequenceDataset, build_lstm_sequences
@@ -17,7 +18,7 @@ from factorypulse.models.deep.lstm_autoencoder import LSTMAutoencoder, LSTMAutoe
 @dataclass(frozen=True)
 class LSTMBundle:
     model: LSTMAutoencoder
-    scaler: object
+    scaler: StandardScaler
     metadata: dict
     device: torch.device
 
@@ -70,8 +71,7 @@ def prepare_feature_dataframe(
     missing_columns = [col for col in feature_columns if col not in result.columns]
     if missing_columns:
         raise ValueError(
-            "Input dataframe is missing required feature columns: "
-            + ", ".join(missing_columns)
+            "Input dataframe is missing required feature columns: " + ", ".join(missing_columns)
         )
 
     for col in feature_columns:
@@ -92,7 +92,7 @@ def bundle_safe_transform(x: pd.DataFrame) -> pd.DataFrame:
 
 def apply_scaler(
     df: pd.DataFrame,
-    scaler: object,
+    scaler: StandardScaler,
     feature_columns: list[str],
 ) -> pd.DataFrame:
     result = df.copy()

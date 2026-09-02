@@ -3,6 +3,8 @@
 
 # FactoryPulse – Time Series Anomaly Detection
 
+[![CI](https://github.com/MateiSapunaru/factorypulse/actions/workflows/ci.yml/badge.svg)](https://github.com/MateiSapunaru/factorypulse/actions/workflows/ci.yml)
+
 FactoryPulse is an end-to-end machine learning project focused on detecting anomalies in multivariate industrial time-series data. The system evaluates statistical, classical machine learning, and deep learning approaches, and integrates experiment tracking, cloud training, and an interactive dashboard.
 
 ---
@@ -249,6 +251,18 @@ poetry run python -m factorypulse.training.train_lstm
 ```bash
 poetry run streamlit run dashboard/app.py
 ```
+
+---
+
+### 7. Run tests and checks
+
+```bash
+poetry run pytest
+poetry run ruff check .
+poetry run mypy src tests
+```
+
+These also run automatically on every push via GitHub Actions (see the CI badge above).
 
 ---
 

@@ -65,7 +65,7 @@ class BaselineSection:
 
 
 def load_baseline_config(config_path: str | Path) -> BaselineSection:
-    with open(config_path, "r", encoding="utf-8") as f:
+    with open(config_path, encoding="utf-8") as f:
         raw_config = yaml.safe_load(f)
 
     rz = RollingZScoreSection(**raw_config["baseline"]["rolling_zscore"])
@@ -439,9 +439,7 @@ def main() -> None:
     save_metrics_summary_csv(summary_rows, comparison_path)
 
     best_model_name = (
-        "isolation_forest"
-        if if_val_result.f1_score > rz_val_result.f1_score
-        else "rolling_zscore"
+        "isolation_forest" if if_val_result.f1_score > rz_val_result.f1_score else "rolling_zscore"
     )
 
     recommendation_text = f"""
@@ -458,7 +456,8 @@ Isolation Forest validation F1: {if_val_result.f1_score:.4f}
 Notes:
 - Rolling Z-score is conservative and has low recall.
 - Isolation Forest achieves much higher recall and better F1.
-- Isolation Forest currently has high false positives and should be tuned further or improved with sequence models.
+- Isolation Forest currently has high false positives and should be tuned further or improved
+  with sequence models.
 """.strip()
 
     recommendation_path = artifact_root / "baseline_recommendation.txt"

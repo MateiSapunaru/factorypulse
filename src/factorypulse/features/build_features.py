@@ -34,7 +34,7 @@ class TrainingConfig:
 
 
 def load_training_config(config_path: str | Path) -> TrainingConfig:
-    with open(config_path, "r", encoding="utf-8") as f:
+    with open(config_path, encoding="utf-8") as f:
         raw_config = yaml.safe_load(f)
 
     split = SplitConfig(**raw_config["split"])
@@ -81,11 +81,7 @@ def sort_time_series_dataset(
     timestamp_column: str,
     machine_id_column: str,
 ) -> pd.DataFrame:
-    return (
-        df.copy()
-        .sort_values([machine_id_column, timestamp_column])
-        .reset_index(drop=True)
-    )
+    return df.copy().sort_values([machine_id_column, timestamp_column]).reset_index(drop=True)
 
 
 def temporal_split(
@@ -96,9 +92,7 @@ def temporal_split(
     test_ratio: float,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     unique_timestamps = (
-        pd.Series(df[timestamp_column].sort_values().unique())
-        .sort_values()
-        .reset_index(drop=True)
+        pd.Series(df[timestamp_column].sort_values().unique()).sort_values().reset_index(drop=True)
     )
 
     n_timestamps = len(unique_timestamps)
@@ -140,9 +134,7 @@ def build_lag_features(
 
     for feature in feature_columns:
         for lag in lag_steps:
-            result[f"{feature}_lag_{lag}"] = (
-                result.groupby(machine_id_column)[feature].shift(lag)
-            )
+            result[f"{feature}_lag_{lag}"] = result.groupby(machine_id_column)[feature].shift(lag)
 
     return result
 
@@ -159,17 +151,17 @@ def build_rolling_features(
         grouped = result.groupby(machine_id_column)[feature]
 
         for window in rolling_windows:
-            result[f"{feature}_roll_mean_{window}"] = (
-                grouped.transform(lambda s: s.rolling(window=window, min_periods=window).mean())
+            result[f"{feature}_roll_mean_{window}"] = grouped.transform(
+                lambda s, window=window: s.rolling(window=window, min_periods=window).mean()
             )
-            result[f"{feature}_roll_std_{window}"] = (
-                grouped.transform(lambda s: s.rolling(window=window, min_periods=window).std())
+            result[f"{feature}_roll_std_{window}"] = grouped.transform(
+                lambda s, window=window: s.rolling(window=window, min_periods=window).std()
             )
-            result[f"{feature}_roll_min_{window}"] = (
-                grouped.transform(lambda s: s.rolling(window=window, min_periods=window).min())
+            result[f"{feature}_roll_min_{window}"] = grouped.transform(
+                lambda s, window=window: s.rolling(window=window, min_periods=window).min()
             )
-            result[f"{feature}_roll_max_{window}"] = (
-                grouped.transform(lambda s: s.rolling(window=window, min_periods=window).max())
+            result[f"{feature}_roll_max_{window}"] = grouped.transform(
+                lambda s, window=window: s.rolling(window=window, min_periods=window).max()
             )
 
     return result

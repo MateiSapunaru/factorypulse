@@ -6,7 +6,6 @@ import pandas as pd
 from sqlalchemy import text
 from sqlalchemy.engine import Engine
 
-
 TABLE_NAME = "sensor_records"
 
 

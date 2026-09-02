@@ -49,15 +49,17 @@ def build_lstm_sequences(
         for end_idx in range(sequence_length - 1, len(group)):
             start_idx = end_idx - sequence_length + 1
 
-            seq_x = x[start_idx:end_idx + 1]
-            seq_y = y[start_idx:end_idx + 1]
+            seq_x = x[start_idx : end_idx + 1]
+            seq_y = y[start_idx : end_idx + 1]
 
             sequences.append(seq_x)
             machine_ids.append(str(machine_id))
             end_timestamps.append(pd.Timestamp(timestamps[end_idx]))
             labels.append(int(seq_y.max()))
 
-    sequence_array = np.stack(sequences) if sequences else np.empty((0, sequence_length, len(feature_columns)))
+    sequence_array = (
+        np.stack(sequences) if sequences else np.empty((0, sequence_length, len(feature_columns)))
+    )
     metadata = SequenceMetadata(
         machine_ids=machine_ids,
         end_timestamps=end_timestamps,

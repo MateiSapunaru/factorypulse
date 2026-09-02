@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Callable
-
 import numpy as np
 import pandas as pd
 
@@ -197,7 +195,7 @@ def apply_anomalies_to_machine(
             continue
 
         result[feature] = updated
-        result.loc[start:end - 1, "is_anomaly"] = 1
-        result.loc[start:end - 1, "anomaly_type"] = anomaly_type
+        result.loc[start : end - 1, "is_anomaly"] = 1
+        result.loc[start : end - 1, "anomaly_type"] = anomaly_type
 
     return result

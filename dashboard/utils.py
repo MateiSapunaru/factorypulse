@@ -15,7 +15,6 @@ from sklearn.metrics import (
 
 from factorypulse.inference.lstm_inference import load_lstm_bundle, predict_with_lstm_bundle
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = PROJECT_ROOT / "data"
 PROCESSED_DIR = DATA_DIR / "processed"

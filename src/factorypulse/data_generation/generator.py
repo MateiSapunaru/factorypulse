@@ -26,13 +26,12 @@ from factorypulse.data_generation.signals import (
 
 
 def load_generator_config(config_path: str | Path) -> GeneratorConfig:
-    with open(config_path, "r", encoding="utf-8") as f:
+    with open(config_path, encoding="utf-8") as f:
         raw_config = yaml.safe_load(f)
 
     dataset = DatasetConfig(**raw_config["dataset"])
     signals = {
-        name: SignalConfig(**signal_cfg)
-        for name, signal_cfg in raw_config["signals"].items()
+        name: SignalConfig(**signal_cfg) for name, signal_cfg in raw_config["signals"].items()
     }
 
     anomaly_raw = raw_config["anomalies"]

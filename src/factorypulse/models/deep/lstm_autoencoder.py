@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import cast
 
 import torch
 from torch import nn
@@ -55,4 +56,4 @@ class LSTMAutoencoder(nn.Module):
         decoded_seq, _ = self.decoder(repeated)
         reconstructed = self.output_layer(decoded_seq)
 
-        return reconstructed
+        return cast(torch.Tensor, reconstructed)

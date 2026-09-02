@@ -9,8 +9,11 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from dashboard.utils import build_base_dataset, load_prediction_file, plot_time_series_with_anomalies
-
+from dashboard.utils import (  # noqa: E402
+    build_base_dataset,
+    load_prediction_file,
+    plot_time_series_with_anomalies,
+)
 
 st.title("Anomaly Visualization")
 

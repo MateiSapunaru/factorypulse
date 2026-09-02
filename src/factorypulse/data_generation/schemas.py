@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict
 
 
 @dataclass(frozen=True)
@@ -68,5 +67,5 @@ class AnomalyConfig:
 class GeneratorConfig:
     random_seed: int
     dataset: DatasetConfig
-    signals: Dict[str, SignalConfig]
+    signals: dict[str, SignalConfig]
     anomalies: AnomalyConfig

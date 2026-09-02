@@ -10,13 +10,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from dashboard.utils import (
+from dashboard.utils import (  # noqa: E402
     compute_metrics_from_predictions,
     load_prediction_file,
     plot_confusion_matrix,
     plot_metric_bars,
 )
-
 
 st.title("Model Performance")
 

@@ -10,8 +10,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from dashboard.utils import MODEL_DIR, PROCESSED_DIR, plot_time_series_with_anomalies, run_lstm_inference
-
+from dashboard.utils import (  # noqa: E402
+    MODEL_DIR,
+    PROCESSED_DIR,
+    plot_time_series_with_anomalies,
+    run_lstm_inference,
+)
 
 st.title("Inference Demo")
 
@@ -90,7 +94,8 @@ st.write(
 )
 
 available_signals = [
-    c for c in ["temperature", "vibration", "pressure", "rpm", "power_draw", "throughput"]
+    c
+    for c in ["temperature", "vibration", "pressure", "rpm", "power_draw", "throughput"]
     if c in input_df.columns
 ]
 signal_column = st.selectbox("Signal for visualization", available_signals, index=0)

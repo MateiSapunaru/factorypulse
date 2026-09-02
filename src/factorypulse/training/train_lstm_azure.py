@@ -47,7 +47,7 @@ class LSTMSection:
 
 
 def load_lstm_config(config_path: str | Path) -> LSTMSection:
-    with open(config_path, "r", encoding="utf-8") as f:
+    with open(config_path, encoding="utf-8") as f:
         raw = yaml.safe_load(f)
 
     raw_lstm = raw["lstm_autoencoder"]
@@ -347,7 +347,9 @@ def main() -> None:
     test_dataset = SequenceDataset(test_sequences)
 
     train_loader = DataLoader(train_dataset, batch_size=config.batch_size, shuffle=True)
-    train_score_loader = DataLoader(train_score_dataset, batch_size=config.batch_size, shuffle=False)
+    train_score_loader = DataLoader(
+        train_score_dataset, batch_size=config.batch_size, shuffle=False
+    )
     val_loader = DataLoader(val_dataset, batch_size=config.batch_size, shuffle=False)
     test_loader = DataLoader(test_dataset, batch_size=config.batch_size, shuffle=False)
 

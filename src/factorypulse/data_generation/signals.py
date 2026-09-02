@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import cast
+
 import numpy as np
 import pandas as pd
 
@@ -38,7 +40,7 @@ def daily_seasonality(
     """
     Simulate 24-hour periodic behavior.
     """
-    return amplitude * np.sin((2.0 * np.pi * hour_of_day / 24.0) + phase_shift)
+    return cast(np.ndarray, amplitude * np.sin((2.0 * np.pi * hour_of_day / 24.0) + phase_shift))
 
 
 def weekly_seasonality(
@@ -49,7 +51,7 @@ def weekly_seasonality(
     """
     Simulate 7-day periodic behavior.
     """
-    return amplitude * np.sin((2.0 * np.pi * day_of_week / 7.0) + phase_shift)
+    return cast(np.ndarray, amplitude * np.sin((2.0 * np.pi * day_of_week / 7.0) + phase_shift))
 
 
 def linear_trend(time_step: np.ndarray, slope: float) -> np.ndarray:
@@ -103,4 +105,4 @@ def generate_normal_signal(
     noise = gaussian_noise(size=n, std=config.noise_std, rng=rng)
 
     signal = machine_base + trend + daily + weekly + noise
-    return signal.astype(float)
+    return cast(np.ndarray, signal.astype(float))

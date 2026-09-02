@@ -15,10 +15,7 @@ def main() -> None:
 
     environment = create_environment(config)
     ml_client.environments.create_or_update(environment)
-    print(
-        f"Registered environment: "
-        f"{config.environment.name}:{config.environment.version}"
-    )
+    print(f"Registered environment: " f"{config.environment.name}:{config.environment.version}")
 
     job = build_lstm_command_job(config, environment)
     returned_job = ml_client.jobs.create_or_update(job)

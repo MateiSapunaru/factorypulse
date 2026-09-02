@@ -1,10 +1,11 @@
 from __future__ import annotations
 
 from sqlalchemy import Column, DateTime, Float, Index, Integer, String
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import DeclarativeBase
 
 
-Base = declarative_base()
+class Base(DeclarativeBase):
+    pass
 
 
 class SensorRecord(Base):

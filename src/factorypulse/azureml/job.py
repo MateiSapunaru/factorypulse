@@ -5,7 +5,7 @@ from pathlib import Path
 
 import yaml
 from azure.ai.ml import Input, MLClient, Output, command
-from azure.ai.ml.entities import Environment
+from azure.ai.ml.entities import Command, Environment
 from azure.identity import DefaultAzureCredential
 
 
@@ -45,7 +45,7 @@ class AzureMLConfig:
 
 
 def load_azureml_config(config_path: str | Path) -> AzureMLConfig:
-    with open(config_path, "r", encoding="utf-8") as f:
+    with open(config_path, encoding="utf-8") as f:
         raw = yaml.safe_load(f)
 
     return AzureMLConfig(
@@ -73,7 +73,7 @@ def create_environment(config: AzureMLConfig) -> Environment:
     )
 
 
-def build_lstm_command_job(config: AzureMLConfig, environment: Environment):
+def build_lstm_command_job(config: AzureMLConfig, environment: Environment) -> Command:
     processed_data_path = Path(config.inputs.processed_data_dir).resolve()
 
     return command(

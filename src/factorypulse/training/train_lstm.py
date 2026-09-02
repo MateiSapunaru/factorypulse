@@ -60,7 +60,7 @@ class TrainingFileConfig:
 
 
 def load_config(config_path: str | Path) -> TrainingFileConfig:
-    with open(config_path, "r", encoding="utf-8") as f:
+    with open(config_path, encoding="utf-8") as f:
         raw = yaml.safe_load(f)
 
     return TrainingFileConfig(
@@ -383,9 +383,7 @@ def main() -> None:
     plot_dir.mkdir(parents=True, exist_ok=True)
     model_dir.mkdir(parents=True, exist_ok=True)
 
-    with mlflow.start_run(
-        run_name=f"{config.mlflow.run_name_prefix}_lstm_autoencoder"
-    ):
+    with mlflow.start_run(run_name=f"{config.mlflow.run_name_prefix}_lstm_autoencoder"):
         log_params_flat(
             {
                 "model_name": "lstm_autoencoder",
